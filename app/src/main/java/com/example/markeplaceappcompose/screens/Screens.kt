@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.markeplaceappcompose.searchbar.SearchBars
 
 
 @Composable
@@ -33,11 +34,7 @@ fun ProfileScreen() {
 }
 @Composable
 fun SearchScreen() {
-    Text(
-        modifier = Modifier.fillMaxSize(),
-        text = "Search",
-        textAlign = TextAlign.Center
-    )
+    SearchBars()
 }
 
 @Composable
