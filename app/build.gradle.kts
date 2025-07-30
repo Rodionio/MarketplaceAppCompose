@@ -43,9 +43,9 @@ android {
 
 dependencies {
 
-    implementation(libs.room.runtime) // Room runtime
+    implementation(libs.room.runtime)
     ksp(libs.room.compiler)
-
+    implementation(libs.androidx.foundation)
     implementation(libs.material3)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.ui)

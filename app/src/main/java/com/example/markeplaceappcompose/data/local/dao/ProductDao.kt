@@ -1,10 +1,10 @@
-package com.example.markeplaceappcompose.dao
+package com.example.markeplaceappcompose.data.local.dao
 
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.markeplaceappcompose.data.ProductEntity
+import com.example.markeplaceappcompose.data.local.dao.entity.ProductEntity
 
 interface ProductDao {
 

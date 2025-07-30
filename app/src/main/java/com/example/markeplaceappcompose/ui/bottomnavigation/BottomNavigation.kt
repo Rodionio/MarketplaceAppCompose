@@ -1,4 +1,4 @@
-package com.example.markeplaceappcompose.bottomnavigation
+package com.example.markeplaceappcompose.ui.bottomnavigation
 
 
 import androidx.compose.material3.Icon
@@ -11,7 +11,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.markeplaceappcompose.data.BottomNavigationItem
+import com.example.markeplaceappcompose.data.local.BottomNavigationItem
 
 
 @Composable

@@ -1,4 +1,4 @@
-package com.example.markeplaceappcompose.data
+package com.example.markeplaceappcompose.data.local
 
 
 import androidx.compose.material.icons.Icons

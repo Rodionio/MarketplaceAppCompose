@@ -1,4 +1,4 @@
-package com.example.markeplaceappcompose.data
+package com.example.markeplaceappcompose.data.local.dao.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

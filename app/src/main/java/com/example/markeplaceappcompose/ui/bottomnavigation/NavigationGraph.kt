@@ -1,4 +1,4 @@
-package com.example.markeplaceappcompose.bottomnavigation
+package com.example.markeplaceappcompose.ui.bottomnavigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
