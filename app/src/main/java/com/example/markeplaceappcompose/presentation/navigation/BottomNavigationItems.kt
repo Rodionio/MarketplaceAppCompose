@@ -1,4 +1,4 @@
-package com.example.markeplaceappcompose.data
+package com.example.markeplaceappcompose.presentation.navigation
 
 
 import androidx.compose.material.icons.Icons
@@ -14,15 +14,15 @@ import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.ui.graphics.vector.ImageVector
 
-sealed class BottomNavigationItem(
+sealed class BottomNavigationItems(
     val title: String,
     val icon: ImageVector,
     val selectedIcon: ImageVector,
     val route: String
 ){
-    object Home : BottomNavigationItem("Home", Icons.Outlined.Home, Icons.Filled.Home,"home")
-    object Search : BottomNavigationItem("Search", Icons.Outlined.Search, Icons.Filled.Search,"search")
-    object Cart : BottomNavigationItem("Cart", Icons.Outlined.ShoppingCart, Icons.Filled.ShoppingCart, "cart")
-    object Profile : BottomNavigationItem("Profile", Icons.Outlined.Person, Icons.Filled.Person, "profile")
-    object Settings : BottomNavigationItem("Settings", Icons.Outlined.Settings, Icons.Filled.Settings ,"settings")
+    object Home : BottomNavigationItems("Home", Icons.Outlined.Home, Icons.Filled.Home,"home")
+    object Search : BottomNavigationItems("Search", Icons.Outlined.Search, Icons.Filled.Search,"search")
+    object Cart : BottomNavigationItems("Cart", Icons.Outlined.ShoppingCart, Icons.Filled.ShoppingCart, "cart")
+    object Profile : BottomNavigationItems("Profile", Icons.Outlined.Person, Icons.Filled.Person, "profile")
+    object Settings : BottomNavigationItems("Settings", Icons.Outlined.Settings, Icons.Filled.Settings ,"settings")
 }
