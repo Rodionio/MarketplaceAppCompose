@@ -35,7 +35,7 @@ fun SearchBars() {
             active.value = false
         },
         placeholder = {
-            Text(text = "Search...")
+            Text(text = "Search on Marketplace")
         },
         colors = SearchBarDefaults.colors(
             containerColor = Color(MyGray.value)
