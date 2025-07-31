@@ -3,10 +3,9 @@ package com.example.markeplaceappcompose.screens
 import android.annotation.SuppressLint
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavGraph
 import androidx.navigation.compose.rememberNavController
-import com.example.markeplaceappcompose.ui.bottomnavigation.BottomNavigation
-import com.example.markeplaceappcompose.ui.bottomnavigation.NavigationGraph
+import com.example.markeplaceappcompose.presentation.navigation.BottomNavigation
+import com.example.markeplaceappcompose.presentation.navigation.NavigationGraph
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

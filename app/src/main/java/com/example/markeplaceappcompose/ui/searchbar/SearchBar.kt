@@ -1,4 +1,4 @@
-package com.example.markeplaceappcompose.searchbar
+package com.example.markeplaceappcompose.ui.searchbar
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons

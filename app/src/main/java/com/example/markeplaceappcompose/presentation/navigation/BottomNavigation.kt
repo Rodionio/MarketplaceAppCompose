@@ -1,4 +1,4 @@
-package com.example.markeplaceappcompose.ui.bottomnavigation
+package com.example.markeplaceappcompose.presentation.navigation
 
 
 import androidx.compose.material3.Icon
@@ -11,7 +11,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.markeplaceappcompose.data.local.BottomNavigationItem
 
 
 @Composable
@@ -22,11 +21,11 @@ fun BottomNavigation(
         mutableStateOf(0)
     }
     val listItems = listOf(
-        BottomNavigationItem.Home,
-        BottomNavigationItem.Search,
-        BottomNavigationItem.Cart,
-        BottomNavigationItem.Profile,
-        BottomNavigationItem.Settings,
+        BottomNavigationItems.Home,
+        BottomNavigationItems.Search,
+        BottomNavigationItems.Cart,
+        BottomNavigationItems.Profile,
+        BottomNavigationItems.Settings,
     )
 
     NavigationBar {
