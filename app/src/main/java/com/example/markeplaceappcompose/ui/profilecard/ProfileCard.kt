@@ -57,6 +57,17 @@ fun ProfileCard() {
                     Text(fontSize = 25.sp, text = "History")
 
                 }
+                HorizontalDivider(modifier = Modifier.padding(vertical = 15.dp))
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp)
+                        .clickable {},
+                ) {
+                    Text(fontSize = 25.sp, text = "Sell your product")
+
+                }
 
                 HorizontalDivider(modifier = Modifier.padding(vertical = 15.dp))
 
