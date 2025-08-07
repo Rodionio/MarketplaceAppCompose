@@ -34,6 +34,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.markeplaceappcompose.R
+import com.example.markeplaceappcompose.ui.cartcard.CartCard
 
 @Preview(showBackground = true)
 @Composable
@@ -50,59 +51,3 @@ fun CartScreen() {
 }
 
 
-@Preview(showBackground = true)
-@Composable
-fun CartCard() {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(10.dp),
-        shape = RoundedCornerShape(10.dp),
-
-        ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.White)
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.lamba),
-                contentDescription = "image2",
-                modifier = Modifier
-                    .fillMaxWidth(),
-                contentScale = ContentScale.Crop
-
-            )
-            Text(fontSize = 20.sp, text = "WTTF")
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(fontSize = 20.sp, text = "10000$")
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .size(40.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-
-                ) {
-                Icon(
-                    modifier = Modifier
-                        .size(35.dp)
-                        .clickable { },
-                    imageVector = Icons.Outlined.Delete,
-                    contentDescription = "delet",
-
-                    )
-                Spacer(modifier = Modifier.width(16.dp))
-                Icon(
-                    modifier = Modifier
-                        .size(35.dp)
-                        .clickable { },
-                    imageVector = Icons.Outlined.FavoriteBorder,
-                    contentDescription = "favorite",
-                )
-                Spacer(modifier = Modifier.width(16.dp))
-                Text(modifier = Modifier.padding(end = 8.dp).clickable {  }, fontSize = 30.sp, text = "Buy")
-            }
-        }
-    }
-}

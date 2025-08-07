@@ -4,6 +4,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.example.markeplaceappcompose.data.local.dao.entity.ProductEntity
 
 interface ProductDao {
@@ -13,6 +14,9 @@ interface ProductDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(product: ProductEntity)
+
+    @Update
+    suspend fun update(product: ProductEntity)
 
     @Delete
     suspend fun delete(product: ProductEntity)
