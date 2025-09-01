@@ -44,7 +44,10 @@ android {
 dependencies {
 
     implementation(libs.room.runtime)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
     ksp(libs.room.compiler)
+    implementation(libs.coil.compose)
+    implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.foundation)
     implementation(libs.material3)
     implementation(libs.androidx.navigation.compose)

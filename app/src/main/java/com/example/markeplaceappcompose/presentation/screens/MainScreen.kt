@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
-import com.example.markeplaceappcompose.presentation.navigation.BottomNavigation
+import com.example.markeplaceappcompose.ui.navigation.BottomNavigation
 import com.example.markeplaceappcompose.presentation.navigation.NavigationGraph
 
 

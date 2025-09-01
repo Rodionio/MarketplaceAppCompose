@@ -1,7 +1,6 @@
 package com.example.markeplaceappcompose.ui.productcard
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -29,21 +28,15 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.markeplaceappcompose.R
-import com.example.markeplaceappcompose.data.local.Product
+import com.example.markeplaceappcompose.domain.model.Product
 
 @Composable
 fun ProductList() {
 
     val productList = listOf(
-        Product("RAM", "10000$", R.drawable.rammm),
-        Product("LAMBA", "1000000$", R.drawable.lamba),
-        Product("HAMMER", "1002300$", R.drawable.hummer),
-        Product("COMARO", "100200$", R.drawable.comaro),
-        Product("HAMMER", "1002300$", R.drawable.hummer),
-        Product("HAMMER", "1002300$", R.drawable.hummer),
-        Product("LAMBA", "1000000$", R.drawable.lamba),
-        Product("COMARO", "100200$", R.drawable.comaro),
-        Product("RAM", "10000$", R.drawable.rammm),
+        Product("1","lamba", "car", "2004.5", R.drawable.lamba),
+        Product("2","lamba", "car", "2004.5", R.drawable.lamba),
+        Product("4","lamba", "car", "2004.5", R.drawable.lamba),
 
         )
 

@@ -1,0 +1,52 @@
+package com.example.markeplaceappcompose.data.repository
+
+import android.content.Context
+import com.example.markeplaceappcompose.data.local.ProductDatabase
+import com.example.markeplaceappcompose.data.local.dao.ProductDao
+import com.example.markeplaceappcompose.data.local.dao.entity.ProductEntity
+import com.example.markeplaceappcompose.domain.repository.ProductRepository
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
+
+///ТУТ ПРОДОЛЖИТЬ
+class ProductRepositoryImpl(
+    context: Context,
+    private val backgroundDispatcher: CoroutineDispatcher,
+) : ProductRepository {
+    private val productDao: ProductDao
+
+    init {
+        val database = ProductDatabase.getDatabase(context)
+        productDao = database!!.productDao()
+    }
+
+    override fun getAllProduct(): Flow<List<ProductEntity>> {
+        return productDao.getAllProduct()
+    }
+
+    override suspend fun insert(product: ProductEntity) {
+        withContext(backgroundDispatcher) {
+            productDao.insertProduct(product)
+        }
+    }
+
+    override suspend fun update(product: ProductEntity) {
+        withContext(backgroundDispatcher) {
+            productDao.updateProduct(product)
+        }
+    }
+
+    override suspend fun delete(product: ProductEntity) {
+        withContext(backgroundDispatcher) {
+            productDao.deleteProduct(product)
+        }
+    }
+
+
+    override suspend fun insertAll(products: List<ProductEntity>) {
+        withContext(backgroundDispatcher) {
+            productDao.insertAll(products)
+        }
+    }
+}
