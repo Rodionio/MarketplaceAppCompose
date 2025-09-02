@@ -1,7 +1,6 @@
 package com.example.markeplaceappcompose.presentation.viewmodel.product
 
 import com.example.markeplaceappcompose.data.local.dao.entity.ProductEntity
-import com.example.markeplaceappcompose.domain.model.Product
 
 sealed class ProductListState {
     object Loading : ProductListState()

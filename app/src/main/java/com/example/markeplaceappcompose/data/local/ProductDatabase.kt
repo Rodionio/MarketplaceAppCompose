@@ -49,22 +49,22 @@ abstract class ProductDatabase: RoomDatabase() {
                 id = 1,
                 name = "lamba",
                 description = "car",
-                price = 2004.5,
-                imageUrl = "android.resource://com.example.marketplaceappcompose/drawable/lamba"
+                price = "2000.5",
+                imageUrl = "android.resource://com.example.markeplaceappcompose/drawable/lamba"
             ),
             ProductEntity(
                 id = 2,
                 name = "camaro",
                 description = "car2",
-                price = 2004.5,
-                imageUrl = "android.resource://com.example.marketplaceappcompose/drawable/camaro"
+                price = "2333",
+                imageUrl = "android.resource://com.example.markeplaceappcompose/drawable/camaro"
             ),
             ProductEntity(
                 id = 3,
                 name = "rammm",
                 description = "car3",
-                price = 2004.5,
-                imageUrl = "android.resource://com.example.marketplaceappcompose/drawable/rammm"
+                price = "3442",
+                imageUrl = "android.resource://com.example.markeplaceappcompose/drawable/rammm"
             )
         )
     }

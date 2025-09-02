@@ -11,7 +11,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -21,42 +23,71 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import coil.compose.AsyncImage
+import com.example.markeplaceappcompose.MarkeeplaceAppCompose
 import com.example.markeplaceappcompose.R
 import com.example.markeplaceappcompose.domain.model.Product
+import com.example.markeplaceappcompose.presentation.viewmodel.product.ProductListState
+import com.example.markeplaceappcompose.presentation.viewmodel.product.ProductViewModel
+import com.example.markeplaceappcompose.presentation.viewmodel.product.ProductViewModelFactory
 
 @Composable
 fun ProductList() {
 
-    val productList = listOf(
-        Product("1","lamba", "car", "2004.5", R.drawable.lamba),
-        Product("2","lamba", "car", "2004.5", R.drawable.lamba),
-        Product("4","lamba", "car", "2004.5", R.drawable.lamba),
+    val app = LocalContext.current.applicationContext as MarkeeplaceAppCompose
+    val vm: ProductViewModel = viewModel(factory = ProductViewModelFactory(app.productRepository))
 
-        )
+    val uiState by vm.uiState.collectAsState()
+    val products by vm.products.collectAsState()
 
-    LazyVerticalGrid(
-        columns = androidx.compose.foundation.lazy.grid.GridCells.Fixed(2),
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(bottom = 70.dp),
-    ) {
-        itemsIndexed(productList) { index, product ->
-            ProductCard(product.name, product.price, product.imageResId)
+    when(uiState){
+        is ProductListState.Loading -> CenterText("Loading...")
+        is ProductListState.Empty -> CenterText("Empty for now")
+        is ProductListState.Error -> CenterText((uiState as ProductListState.Error).message)
+        is ProductListState.Success ->{
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(2),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(bottom = 70.dp),
+            ) {
+                items(products) {  product ->
+                    ProductCard(
+                        name = product.name,
+                        price = "${product.price} $",
+                        imageUrl = product.imageUrl
 
+                    )
+
+
+                }
+            }
         }
     }
 
+
+}
+
+@Composable
+private fun CenterText(text: String) {
+    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Text(text)
+    }
 }
 
 //@Preview(showBackground = true)
 @Composable
-fun ProductCard(name: String, price: String, image: Int) {
+fun ProductCard(name: String, price: String, imageUrl: String) {
     Box(
         modifier = Modifier
             .fillMaxSize(),
@@ -77,10 +108,9 @@ fun ProductCard(name: String, price: String, image: Int) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                // .padding(10.dp)
             ) {
-                Image(
-                    painter = painterResource(id = image),
+                AsyncImage(
+                    model = imageUrl,
                     contentDescription = "image",
                     modifier = Modifier
                         .fillMaxWidth()

@@ -1,7 +1,6 @@
 package com.example.markeplaceappcompose.domain.repository
 
 import com.example.markeplaceappcompose.data.local.dao.entity.ProductEntity
-import com.example.markeplaceappcompose.domain.model.Product
 import kotlinx.coroutines.flow.Flow
 
 interface ProductRepository{
