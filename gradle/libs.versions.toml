@@ -1,5 +1,6 @@
 [versions]
 agp = "8.11.0"
+coilCompose = "2.7.0"
 foundation = "1.4.0"
 kotlin = "2.0.0"
 coreKtx = "1.16.0"
@@ -15,12 +16,14 @@ ui = "1.8.3"
 uiToolingPreview = "1.8.3"
 room = "2.5.0"
 ksp = "2.0.0-1.0.21"
+lifecycleLivedataKtx = "2.9.2"
 
 [libraries]
 androidx-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "foundation" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
-# ksp-room-compiler = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room"}
 
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
@@ -40,6 +43,7 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 material3 = { module = "androidx.compose.material3:material3", version.ref = "material3" }
 ui = { module = "androidx.compose.ui:ui", version.ref = "ui" }
 ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "uiToolingPreview" }
+androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
