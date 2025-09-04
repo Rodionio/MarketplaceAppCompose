@@ -18,15 +18,13 @@ import com.example.markeplaceappcompose.presentation.navigation.BottomNavigation
 fun BottomNavigation(
     navController: NavController
 ) {
-    val selectedItemIndex by rememberSaveable {
-        mutableStateOf(0)
-    }
+
     val listItems = listOf(
         BottomNavigationItems.Home,
         BottomNavigationItems.Search,
         BottomNavigationItems.Cart,
         BottomNavigationItems.Profile,
-        BottomNavigationItems.Settings,
+
     )
 
     NavigationBar {

@@ -1,6 +1,5 @@
 package com.example.markeplaceappcompose.ui.productcard
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,9 +13,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -28,31 +27,32 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
-import com.example.markeplaceappcompose.MarkeeplaceAppCompose
-import com.example.markeplaceappcompose.R
-import com.example.markeplaceappcompose.domain.model.Product
+import com.example.markeplaceappcompose.data.local.dao.entity.ProductEntity
 import com.example.markeplaceappcompose.presentation.viewmodel.product.ProductListState
 import com.example.markeplaceappcompose.presentation.viewmodel.product.ProductViewModel
-import com.example.markeplaceappcompose.presentation.viewmodel.product.ProductViewModelFactory
+
+
+
+
 
 @Composable
-fun ProductList() {
+fun ProductList(productViewModel: ProductViewModel ) {
 
-    val app = LocalContext.current.applicationContext as MarkeeplaceAppCompose
-    val vm: ProductViewModel = viewModel(factory = ProductViewModelFactory(app.productRepository))
+    val uiState by productViewModel.uiState.collectAsState()
+    val products by productViewModel.products.collectAsState()
 
-    val uiState by vm.uiState.collectAsState()
-    val products by vm.products.collectAsState()
+
 
     when(uiState){
         is ProductListState.Loading -> CenterText("Loading...")
-        is ProductListState.Empty -> CenterText("Empty for now")
+        is ProductListState.Empty -> CenterText( "Empty for now")
         is ProductListState.Error -> CenterText((uiState as ProductListState.Error).message)
         is ProductListState.Success ->{
             LazyVerticalGrid(
@@ -63,9 +63,8 @@ fun ProductList() {
             ) {
                 items(products) {  product ->
                     ProductCard(
-                        name = product.name,
-                        price = "${product.price} $",
-                        imageUrl = product.imageUrl
+                        product = product,
+                        onFavoriteClick = { productViewModel.onFavoriteClick(it)}
 
                     )
 
@@ -79,15 +78,17 @@ fun ProductList() {
 }
 
 @Composable
-private fun CenterText(text: String) {
+private fun CenterText(text: String,fontSize: TextUnit =25.sp) {
     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text(text)
+        Text(text=text, fontSize =fontSize)
     }
 }
 
-//@Preview(showBackground = true)
+
 @Composable
-fun ProductCard(name: String, price: String, imageUrl: String) {
+fun ProductCard(
+    product: ProductEntity,
+    onFavoriteClick: (productId: Int) -> Unit,) {
     Box(
         modifier = Modifier
             .fillMaxSize(),
@@ -110,7 +111,7 @@ fun ProductCard(name: String, price: String, imageUrl: String) {
                     .fillMaxWidth()
             ) {
                 AsyncImage(
-                    model = imageUrl,
+                    model = product.imageUrl,
                     contentDescription = "image",
                     modifier = Modifier
                         .fillMaxWidth()
@@ -123,9 +124,9 @@ fun ProductCard(name: String, price: String, imageUrl: String) {
                         .padding(16.dp),
                     verticalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Text(text = name)
+                    Text(text = product.name)
                     Spacer(modifier = Modifier.height(8.dp))
-                    Text(text = price)
+                    Text(text = product.price)
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
@@ -135,10 +136,12 @@ fun ProductCard(name: String, price: String, imageUrl: String) {
                         Icon(
                             modifier = Modifier
                                 .size(20.dp)
-                                .clickable { },
-                            imageVector = Icons.Default.FavoriteBorder,
-                            contentDescription = "favorite"
+                                .clickable { onFavoriteClick(product.id) },
+                            imageVector = if (product.isFavorite) Icons.Filled.Favorite else Icons.Default.FavoriteBorder,
+                            contentDescription = "favorite",
+                            tint = if (product.isFavorite) Color.Red else Color.Gray
                         )
+
 
                     }
                 }

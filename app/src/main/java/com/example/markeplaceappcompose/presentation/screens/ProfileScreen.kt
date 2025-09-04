@@ -19,19 +19,20 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import androidx.room.util.TableInfo
 import com.example.markeplaceappcompose.ui.profilecard.ProfileCard
 
-@Preview(showBackground = true)
+
 @Composable
-fun ProfileScreen() {
+fun ProfileScreen(navController: NavHostController) {
     Column(
         modifier = Modifier
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(modifier = Modifier.padding(15.dp), fontSize = 25.sp, text = "Profile")
-        ProfileCard()
+        ProfileCard(navController = navController)
     }
 
 }

@@ -7,9 +7,9 @@ import com.example.markeplaceappcompose.data.local.dao.entity.ProductEntity
 import com.example.markeplaceappcompose.domain.repository.ProductRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 
-///ТУТ ПРОДОЛЖИТЬ
 class ProductRepositoryImpl(
     context: Context,
     private val backgroundDispatcher: CoroutineDispatcher,
@@ -18,12 +18,17 @@ class ProductRepositoryImpl(
 
     init {
         val database = ProductDatabase.getDatabase(context)
-        productDao = database!!.productDao()
+        productDao = database.productDao()
     }
 
     override fun getAllProduct(): Flow<List<ProductEntity>> {
         return productDao.getAllProduct()
     }
+    override fun getFavorites(): Flow<List<ProductEntity>> {
+        return productDao.getFavorites()
+    }
+
+
 
     override suspend fun insert(product: ProductEntity) {
         withContext(backgroundDispatcher) {
@@ -47,6 +52,16 @@ class ProductRepositoryImpl(
     override suspend fun insertAll(products: List<ProductEntity>) {
         withContext(backgroundDispatcher) {
             productDao.insertAll(products)
+        }
+    }
+
+    override suspend fun toggleFavorite(productId: Int) {
+        withContext(backgroundDispatcher) {
+            val product = productDao.getAllProduct().first().find { it.id == productId }
+            product?.let {
+                val updatedProduct = it.copy(isFavorite = !it.isFavorite)
+                productDao.updateProduct(updatedProduct)
+            }
         }
     }
 }
