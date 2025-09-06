@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.markeplaceappcompose"
+    namespace = "com.example.marketplaceappcompose"
     compileSdk = 36
 
     defaultConfig {
