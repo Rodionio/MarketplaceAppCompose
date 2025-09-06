@@ -24,10 +24,14 @@ class ProductRepositoryImpl(
     override fun getAllProduct(): Flow<List<ProductEntity>> {
         return productDao.getAllProduct()
     }
+
     override fun getFavorites(): Flow<List<ProductEntity>> {
         return productDao.getFavorites()
     }
 
+    override fun getCartProducts(): Flow<List<ProductEntity>> {
+        return productDao.getCartProducts()
+    }
 
 
     override suspend fun insert(product: ProductEntity) {
@@ -48,7 +52,6 @@ class ProductRepositoryImpl(
         }
     }
 
-
     override suspend fun insertAll(products: List<ProductEntity>) {
         withContext(backgroundDispatcher) {
             productDao.insertAll(products)
@@ -60,6 +63,16 @@ class ProductRepositoryImpl(
             val product = productDao.getAllProduct().first().find { it.id == productId }
             product?.let {
                 val updatedProduct = it.copy(isFavorite = !it.isFavorite)
+                productDao.updateProduct(updatedProduct)
+            }
+        }
+    }
+
+    override suspend fun toggleCart(productId: Int) {
+        withContext(backgroundDispatcher) {
+            val product = productDao.getAllProduct().first().find { it.id == productId }
+            product?.let {
+                val updatedProduct = it.copy(isInCart = !it.isInCart)
                 productDao.updateProduct(updatedProduct)
             }
         }

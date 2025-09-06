@@ -10,63 +10,60 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import java.io.File
 
 @Composable
 fun AddProductCard(
     name: String,
     price: String,
     description: String,
-    imageUri: String?,
+    imagePath: String?,
     onSelectImage: () -> Unit
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp),
-        shape = RoundedCornerShape(10.dp)
+            .shadow(4.dp, RoundedCornerShape(16.dp)),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
     ) {
         Column(
             modifier = Modifier
-                .background(Color.White)
-                .padding(12.dp)
+                .padding(16.dp)
         ) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(180.dp)
+                    .height(200.dp)
                     .clickable { onSelectImage() }
+                    .background(MaterialTheme.colorScheme.onSurface.copy(alpha = 0.05f)),
+                contentAlignment = Alignment.Center
             ) {
-                if (imageUri != null) {
+                if (imagePath != null) {
                     Image(
-                        painter = rememberAsyncImagePainter(imageUri),
+                        painter = rememberAsyncImagePainter(File(imagePath)),
                         contentDescription = name,
                         modifier = Modifier.fillMaxSize(),
                         contentScale = ContentScale.Crop
                     )
                 } else {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(Color.LightGray),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text("Click to select image", color = Color.DarkGray)
-                    }
+                    Text(
+                        "Click to select image",
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
+                        style = MaterialTheme.typography.bodyMedium
+                    )
                 }
             }
 
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(12.dp))
 
-            Text(text = "Name: $name", fontSize = 18.sp)
-            Spacer(modifier = Modifier.height(4.dp))
-            Text(text = "Price: $price", fontSize = 18.sp)
-            Spacer(modifier = Modifier.height(4.dp))
-            Text(text = "Description: $description", fontSize = 16.sp)
+            Text(text = "Name: $name", style = MaterialTheme.typography.titleMedium)
+            Text(text = "Price: $price", style = MaterialTheme.typography.bodyMedium)
+            Text(text = "Description: $description", style = MaterialTheme.typography.bodySmall)
         }
     }
 }

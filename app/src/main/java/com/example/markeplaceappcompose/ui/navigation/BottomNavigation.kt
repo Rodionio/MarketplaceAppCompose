@@ -7,8 +7,6 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.markeplaceappcompose.presentation.navigation.BottomNavigationItems
@@ -21,11 +19,10 @@ fun BottomNavigation(
 
     val listItems = listOf(
         BottomNavigationItems.Home,
-        BottomNavigationItems.Search,
         BottomNavigationItems.Cart,
         BottomNavigationItems.Profile,
 
-    )
+        )
 
     NavigationBar {
         val backStackEntry by navController.currentBackStackEntryAsState()

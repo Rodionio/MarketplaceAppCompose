@@ -10,8 +10,7 @@ class ProductViewModelFactory(
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(ProductViewModel::class.java))
-        {
+        if (modelClass.isAssignableFrom(ProductViewModel::class.java)) {
             return ProductViewModel(repository) as T
 
         }

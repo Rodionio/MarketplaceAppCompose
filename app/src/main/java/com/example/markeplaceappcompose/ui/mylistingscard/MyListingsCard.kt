@@ -1,4 +1,4 @@
-package com.example.markeplaceappcompose.ui.myproductcard
+package com.example.markeplaceappcompose.ui.mylistingscard
 
 
 import androidx.compose.foundation.background
@@ -9,7 +9,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.outlined.Delete
-import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -24,13 +23,16 @@ import coil.compose.AsyncImage
 import com.example.markeplaceappcompose.data.local.dao.entity.ProductEntity
 
 @Composable
-fun MyListingsCard( product: ProductEntity,
-                   onDelete: () -> Unit,
-                   onBuy: () -> Unit,
-                   onFavorite: () -> Unit
+fun MyListingsCard(
+    product: ProductEntity,
+    onClick: ((Int) -> Unit)? = null,
+    onDelete: () -> Unit,
+    onFavorite: () -> Unit
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onClick?.invoke(product.id) },
         shape = RoundedCornerShape(10.dp)
     ) {
         Column(
@@ -41,13 +43,19 @@ fun MyListingsCard( product: ProductEntity,
             AsyncImage(
                 model = product.imageUrl,
                 contentDescription = product.name,
-                modifier = Modifier.fillMaxWidth().height(180.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(180.dp),
                 contentScale = ContentScale.Crop
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(fontSize = 20.sp, text = product.name, modifier = Modifier.padding(start = 8.dp))
             Spacer(modifier = Modifier.height(4.dp))
-            Text(fontSize = 18.sp, text = "${product.price}$", modifier = Modifier.padding(start = 8.dp))
+            Text(
+                fontSize = 18.sp,
+                text = "${product.price}$",
+                modifier = Modifier.padding(start = 8.dp)
+            )
             Spacer(modifier = Modifier.height(8.dp))
 
             Row(
@@ -60,24 +68,23 @@ fun MyListingsCard( product: ProductEntity,
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(
-                        modifier = Modifier.size(28.dp).clickable { onDelete() },
+                        modifier = Modifier
+                            .size(28.dp)
+                            .clickable { onDelete() },
                         imageVector = Icons.Outlined.Delete,
                         contentDescription = "delete",
                     )
                     Spacer(modifier = Modifier.width(12.dp))
                     Icon(
-                        modifier = Modifier.size(28.dp).clickable { onFavorite() },
+                        modifier = Modifier
+                            .size(28.dp)
+                            .clickable { onFavorite() },
                         imageVector = if (product.isFavorite) Icons.Filled.Favorite else Icons.Default.FavoriteBorder,
                         contentDescription = "favorite",
                         tint = if (product.isFavorite) Color.Red else Color.Gray
                     )
                 }
 
-                Text(
-                    modifier = Modifier.clickable { onBuy() },
-                    fontSize = 22.sp,
-                    text = "Buy"
-                )
             }
         }
     }
