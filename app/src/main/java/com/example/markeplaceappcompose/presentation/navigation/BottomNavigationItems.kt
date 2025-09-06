@@ -18,10 +18,9 @@ sealed class BottomNavigationItems(
     val title: String,
     val icon: ImageVector,
     val route: String
-){
+) {
     object Home : BottomNavigationItems("Home", Icons.Outlined.Home, "home")
-    object Search : BottomNavigationItems("Search", Icons.Outlined.Search, "search")
-    object Cart : BottomNavigationItems("Cart", Icons.Outlined.ShoppingCart,  "cart")
-    object Profile : BottomNavigationItems("Profile", Icons.Outlined.Person,  "profile")
+    object Cart : BottomNavigationItems("Cart", Icons.Outlined.ShoppingCart, "cart")
+    object Profile : BottomNavigationItems("Profile", Icons.Outlined.Person, "profile")
 
 }

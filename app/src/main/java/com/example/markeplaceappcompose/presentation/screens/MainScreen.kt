@@ -26,9 +26,11 @@ fun MainScreen() {
         bottomBar = {
             BottomNavigation(navController = navController)
         }
-    ) {
+    ) { innerPadding ->
         NavigationGraph(
-            productViewModel = productViewModel, navHostController = navController
+            productViewModel = productViewModel,
+            navHostController = navController,
+            innerPadding = innerPadding
         )
     }
 }

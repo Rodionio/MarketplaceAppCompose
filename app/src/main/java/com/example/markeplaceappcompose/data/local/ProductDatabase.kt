@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
     version = 1,
     exportSchema = true
 )
-abstract class ProductDatabase: RoomDatabase() {
+abstract class ProductDatabase : RoomDatabase() {
     abstract fun productDao(): ProductDao
 
     companion object {
@@ -48,25 +48,28 @@ abstract class ProductDatabase: RoomDatabase() {
             ProductEntity(
                 id = 1,
                 name = "lamba",
-                description = "car",
-                price = "2000.5",
-                imageUrl = "android.resource://com.example.markeplaceappcompose/drawable/lamba"
+                description = "This sleek Lamborghini toy car delivers high-speed thrills with its iconic Italian design, perfect for racing enthusiasts and collectors alike.",
+                price = "20",
+                imageUrl = "android.resource://com.example.markeplaceappcompose/drawable/lamba",
+                isUserCreated = false
             ),
             ProductEntity(
                 id = 2,
                 name = "camaro",
-                description = "car2",
-                price = "2333",
-                imageUrl = "android.resource://com.example.markeplaceappcompose/drawable/camaro"
+                description = "The classic Camaro toy car combines American muscle power and timeless style, ready to zoom into action-packed adventures.",
+                price = "23",
+                imageUrl = "android.resource://com.example.markeplaceappcompose/drawable/camaro",
+                isUserCreated = false
             ),
             ProductEntity(
                 id = 3,
                 name = "rammm",
-                description = "car3",
-                price = "3442",
-                imageUrl = "android.resource://com.example.markeplaceappcompose/drawable/rammm"
+                description = "The rugged Dodge Ram toy truck brings off-road excitement and bold power, ideal for imaginative play and tough challenges.",
+                price = "34",
+                imageUrl = "android.resource://com.example.markeplaceappcompose/drawable/rammm",
+                isUserCreated = false
+
             )
         )
     }
-
 }

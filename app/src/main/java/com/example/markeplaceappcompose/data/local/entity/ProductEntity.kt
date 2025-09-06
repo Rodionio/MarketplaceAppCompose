@@ -17,7 +17,11 @@ data class ProductEntity(
     @ColumnInfo(name = "imageUrl")
     val imageUrl: String,
     @ColumnInfo(name = "isFavorite")
-    val isFavorite: Boolean = false
+    val isFavorite: Boolean = false,
+    @ColumnInfo(name = "isInCart")
+    val isInCart: Boolean = false,
+    @ColumnInfo(name = "isUserCreated")
+    val isUserCreated: Boolean = false
 
 
 )
